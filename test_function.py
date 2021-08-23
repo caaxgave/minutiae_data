@@ -135,6 +135,7 @@ for train_index, valid_index in cv.split(X):
     batch_size=200,
     epochs=50,
     callbacks=[early_stopping],
+    verbose=0
   )
 
   AUC_Values.append(history.history['val_auc'][-1])
