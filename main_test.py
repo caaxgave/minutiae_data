@@ -1,7 +1,6 @@
 #TESTS SCRIPT
 
 import pytest
-from function import *
 from assignment_1 import *
 
 
