@@ -51,12 +51,13 @@ cv = KFold(n_splits=15, random_state=7, shuffle=True) #K-Fold Function
 model = XGBClassifier(n_estimators=250, learning_rate=0.1, random_state=7)
 
 scores = cross_val_score(model, X, y, scoring='roc_auc', cv=cv)
-print('ROC-AUC: %.3f (%.3f)' % (np.mean(scores), np.std(scores)))
-
+#print("**** Classifier model: XGBoost ***")
+#print('ROC-AUC: %.3f (%.3f)' % (np.mean(scores), np.std(scores)))
+#print()
 """### Random Forest"""
 
-#clf = RandomForestClassifier(n_estimators= 150, criterion='entropy', random_state=7)
-clf = XGBClassifier(n_estimators=250, learning_rate=0.1, random_state=7)
+clf = RandomForestClassifier(n_estimators= 150, criterion='entropy', random_state=7)
+#clf = XGBClassifier(n_estimators=250, learning_rate=0.1, random_state=7)
 cv = KFold(n_splits=10, random_state=7, shuffle=True)
 
 fig1 = plt.figure(figsize=[12,12])
@@ -85,8 +86,10 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('ROC')
 plt.legend(loc="lower right")
-plt.show()
+#plt.show()
+plt.savefig('RandomForest.png')
 
+print()
 """### Neural Network"""
 
 def create_model(input_shape):
@@ -136,5 +139,13 @@ for train_index, valid_index in cv.split(X):
 
   AUC_Values.append(history.history['val_auc'][-1])
 
+print()
+print()
+print("**** Classifier model: XGBoost ****")
+print('ROC-AUC: %.3f (%.3f)' % (np.mean(scores), np.std(scores)))
+print()
+print("**** Classifier model: Random Forest ****")
+print('ROC-AUC: %.3f' % mean_auc)
+print()
+print("**** Classifier model: Neural Network ****")
 print("AUC Score: ", np.average(AUC_Values))
-
