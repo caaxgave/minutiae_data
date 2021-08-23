@@ -84,7 +84,7 @@ plt.plot(mean_fpr, mean_tpr, color='blue',
 
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('ROC')
+plt.title('ROC for Random Forest')
 plt.legend(loc="lower right")
 #plt.show()
 plt.savefig('RandomForest.png')
